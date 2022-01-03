@@ -63,6 +63,7 @@ include(cmake/ceres.cmake)
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 include(cmake/global_defination.cmake)
+
 catkin_package()
 
 file(GLOB_RECURSE ALL_SRCS "*.cpp")
@@ -80,6 +81,8 @@ target_link_libraries(lio_matching_node ${catkin_LIBRARIES} ${ALL_TARGET_LIBRARI
 add_executable(sliding_window_node src/apps/sliding_window_node.cpp ${ALL_SRCS})
 add_dependencies(sliding_window_node ${catkin_EXPORTED_TARGETS} ${PROJECT_NAME}_generate_messages_cpp)
 target_link_libraries(sliding_window_node ${catkin_LIBRARIES} ${ALL_TARGET_LIBRARIES})
+
+#target_link_libraries(g2o_graph_optimizer.cpp ${Sophus_LIBRARIES} fmt) 
 
 #############
 ## Install ##

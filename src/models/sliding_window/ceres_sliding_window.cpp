@@ -12,6 +12,7 @@
 
 #include "glog/logging.h"
 
+
 namespace lidar_localization {
 
 CeresSlidingWindow::CeresSlidingWindow(
@@ -22,7 +23,7 @@ CeresSlidingWindow::CeresSlidingWindow(
     // config optimizer:
     // 
     // a. loss function:
-    config_.loss_function_ptr = std::make_unique<ceres::CauchyLoss>(1.0);
+    config_.loss_function_ptr = std::unique_ptr<ceres::CauchyLoss>(new ceres::CauchyLoss(1.0));
 
     // b. solver:
     config_.options.linear_solver_type = ceres::DENSE_SCHUR;
