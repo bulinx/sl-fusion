@@ -23,7 +23,7 @@ SlidingWindowFlow::SlidingWindowFlow(
     // b. map matching odometry:
     map_matching_odom_sub_ptr_ = std::make_shared<OdometrySubscriber>(nh, "/map_matching_odometry", 100000);
     // c. IMU measurement, for pre-integration:
-    imu_raw_sub_ptr_ = std::make_shared<IMUSubscriber>(nh, "/kitti/oxts/imu/extract", 1000000);
+    imu_raw_sub_ptr_ = std::make_shared<IMUSubscriber>(nh, "imu_topic_pre", 1000000);
     imu_synced_sub_ptr_ = std::make_shared<IMUSubscriber>(nh, "/synced_imu", 100000);
     // d. GNSS position:
     gnss_pose_sub_ptr_ = std::make_shared<OdometrySubscriber>(nh, "/synced_gnss", 100000);
