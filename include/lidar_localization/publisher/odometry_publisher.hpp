@@ -46,6 +46,8 @@ class OdometryPublisher {
 
     VelocityData velocity_data_;
     nav_msgs::Odometry odometry_;
+    nav_msgs::Odometry C214_visual_pose;
+
 };
 }
 #endif

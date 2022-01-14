@@ -23,6 +23,8 @@ bool TFListener::LookupData(Eigen::Matrix4f& transform_matrix) {
     }
 }
 
+//tf::StampedTransform 带时间戳的变换	
+
 bool TFListener::TransformToMatrix(const tf::StampedTransform& transform, Eigen::Matrix4f& transform_matrix) {
     Eigen::Translation3f tl_btol(transform.getOrigin().getX(), transform.getOrigin().getY(), transform.getOrigin().getZ());
     

@@ -28,13 +28,16 @@ MatchingFlow::MatchingFlow(ros::NodeHandle& nh) {
     // b. local point cloud map:
     local_map_pub_ptr_ = std::make_shared<CloudPublisher>(nh, "/local_map", "/map", 100);
     // c. current scan:
+    current_points_pub_ptr_ = std::make_shared<CloudPublisher>(nh, "/current_points", "/map", 100);
     current_scan_pub_ptr_ = std::make_shared<CloudPublisher>(nh, "/current_scan", "/map", 100);
-    current_points_pub_ptr_ = std::make_shared<CloudPublisher>(nh, "/current_scan", "/map", 100);
 
     // d. estimated lidar pose in map frame, lidar frontend:
     laser_odom_pub_ptr_ = std::make_shared<OdometryPublisher>(nh, "/laser_odometry", "/map", "/lidar", 100);
-    // e. estimated lidar pose in map frame, map matching:
+    // e. estimated lidar pose in map frame, map matching: 估计雷达位姿在map坐标系下
     map_matching_odom_pub_ptr_ = std::make_shared<OdometryPublisher>(nh, "/map_matching_odometry", "/map", "/lidar", 100);
+    C214_visual_pose_pub_ptr_ = std::make_shared<OdometryPublisher>(nh, "/C214_visual_pose", "/world", "/lidar", 100);
+    C214_vicon_pose_pub_ptr_ = std::make_shared<OdometryPublisher>(nh, "/C214_vicon_pose", "/world", "/lidar", 100);
+
 
     matching_ptr_ = std::make_shared<Matching>();
 }
@@ -165,8 +168,11 @@ bool MatchingFlow::PublishData() {
     laser_odom_pub_ptr_->Publish(laser_odometry_, timestamp_synced);
     map_matching_odom_pub_ptr_->Publish(map_matching_odometry_, timestamp_synced);
 
-    current_scan_pub_ptr_->Publish(matching_ptr_->GetCurrentScan());
     current_points_pub_ptr_->Publish(current_cloud_data_.cloud_ptr, timestamp_synced);
+    current_scan_pub_ptr_->Publish(matching_ptr_->GetCurrentScan());
+
+    C214_visual_pose_pub_ptr_->Publish(laser_odometry_, timestamp_synced);
+    C214_vicon_pose_pub_ptr_->Publish(laser_odometry_, timestamp_synced);
 
     return true;
 }

@@ -53,6 +53,9 @@ class MatchingFlow {
 
     std::shared_ptr<OdometryPublisher> laser_odom_pub_ptr_;
     std::shared_ptr<OdometryPublisher> map_matching_odom_pub_ptr_;
+    std::shared_ptr<OdometryPublisher> C214_visual_pose_pub_ptr_;
+    std::shared_ptr<OdometryPublisher> C214_vicon_pose_pub_ptr_;
+
 
     // matching
     std::shared_ptr<Matching> matching_ptr_;

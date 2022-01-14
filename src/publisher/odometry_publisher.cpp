@@ -16,6 +16,14 @@ OdometryPublisher::OdometryPublisher(ros::NodeHandle& nh,
     publisher_ = nh_.advertise<nav_msgs::Odometry>(topic_name, buff_size);
     odometry_.header.frame_id = base_frame_id;
     odometry_.child_frame_id = child_frame_id;
+    C214_visual_pose.header.frame_id = "world";
+    C214_visual_pose.header.child_frame_id  = child_frame_id;
+    C214_visual_pose.header.frame_id = "world";
+    C214_visual_pose.header.child_frame_id  = child_frame_id;
+
+
+
+
 }
 
 void OdometryPublisher::Publish(
@@ -82,6 +90,7 @@ void OdometryPublisher::PublishData(
     const VelocityData &velocity_data,  
     ros::Time time
 ) {
+    geometry_msgs::TransformStamped C214_vicon_pose;
     odometry_.header.stamp = time;
 
     // set the pose
@@ -106,7 +115,27 @@ void OdometryPublisher::PublishData(
     odometry_.twist.twist.angular.y = velocity_data.angular_velocity.y;
     odometry_.twist.twist.angular.z = velocity_data.angular_velocity.z;
 
+    C214_vicon_pose.transform.rotation.x = q.x();
+  	C214_vicon_pose.transform.rotation.y = q.y();
+  	C214_vicon_pose.transform.rotation.z = q.z();
+  	C214_vicon_pose.transform.rotation.w = q.w();
+  	C214_vicon_pose.transform.translation.x = transform_matrix(0,3);
+  	C214_vicon_pose.transform.translation.y = transform_matrix(1,3);
+  	C214_vicon_pose.transform.translation.z = transform_matrix(2,3);
+
+    C214_visual_pose.pose.pose.orientation.x = q.x();    //y      dz x
+  	C214_visual_pose.pose.pose.orientation.y = q.y();    //z         y
+  	C214_visual_pose.pose.pose.orientation.z = q.z();    //x        z
+  	C214_visual_pose.pose.pose.orientation.w = q.w();    //w        w
+  	C214_visual_pose.pose.pose.position.x = transform_matrix(0,3);
+  	C214_visual_pose.pose.pose.position.y = transform_matrix(1,3);
+  	C214_visual_pose.pose.pose.position.z = transform_matrix(2,3);
+
     publisher_.publish(odometry_);
+    publisher_.publish(C214_vicon_pose);
+    publisher_.publish(C214_visual_pose);
+
+
 }
 
 bool OdometryPublisher::HasSubscribers() {
