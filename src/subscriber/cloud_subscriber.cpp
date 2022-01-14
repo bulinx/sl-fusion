@@ -9,7 +9,9 @@
 #include "glog/logging.h"
 
 namespace lidar_localization {
-CloudSubscriber::CloudSubscriber(ros::NodeHandle& nh, std::string topic_name, size_t buff_size)
+CloudSubscriber::CloudSubscriber(ros::NodeHandle& nh, 
+                                 std::string topic_name,
+                                 size_t buff_size)
     :nh_(nh) {
     subscriber_ = nh_.subscribe(topic_name, buff_size, &CloudSubscriber::msg_callback, this);
 }
@@ -17,7 +19,7 @@ CloudSubscriber::CloudSubscriber(ros::NodeHandle& nh, std::string topic_name, si
 void CloudSubscriber::msg_callback(const sensor_msgs::PointCloud2::ConstPtr& cloud_msg_ptr) {
     buff_mutex_.lock();
 
-    // convert ROS PointCloud2 to pcl::PointCloud<pcl::PointXYZ>:
+    // convert ROS PointCloud2 to pcl::PointCloud<pcl::PointXYZ>:  将ros中的PointCloud2转化为可处理的pcl：：pointcloud
     CloudData cloud_data;
     cloud_data.time = cloud_msg_ptr->header.stamp.toSec();
     pcl::fromROSMsg(*cloud_msg_ptr, *(cloud_data.cloud_ptr));

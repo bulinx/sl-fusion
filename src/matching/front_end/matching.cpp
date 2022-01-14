@@ -234,7 +234,10 @@ bool Matching::Update(
     // matching:
     CloudData::CLOUD_PTR result_cloud_ptr(new CloudData::CLOUD());
     registration_ptr_->ScanMatch(filtered_cloud_ptr, predict_pose, result_cloud_ptr, laser_pose);
+    //对应到hdl中是发布aligned_points   pcl::transformPointCloud (*cloud, *aligned, odom);
+    //根据最新的位姿，将输入的点云转成了当前帧
     pcl::transformPointCloud(*cloud_data.cloud_ptr, *current_scan_ptr_, laser_pose);
+
 
     // update predicted pose:
     step_pose = last_pose.inverse() * laser_pose;

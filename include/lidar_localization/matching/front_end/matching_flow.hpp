@@ -48,6 +48,8 @@ class MatchingFlow {
     std::shared_ptr<CloudPublisher> global_map_pub_ptr_;
     std::shared_ptr<CloudPublisher> local_map_pub_ptr_;
     std::shared_ptr<CloudPublisher> current_scan_pub_ptr_;
+    std::shared_ptr<CloudPublisher> current_points_pub_ptr_;
+
 
     std::shared_ptr<OdometryPublisher> laser_odom_pub_ptr_;
     std::shared_ptr<OdometryPublisher> map_matching_odom_pub_ptr_;

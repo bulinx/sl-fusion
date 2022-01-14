@@ -22,13 +22,15 @@ MatchingFlow::MatchingFlow(ros::NodeHandle& nh) {
     //
     // publishers:
     // 
+    //aligned_points_pub = std::make_shared<CloudPubscriber>(nh, "/current_points", 32);
     // a. global point cloud map:
     global_map_pub_ptr_ = std::make_shared<CloudPublisher>(nh, "/global_map", "/map", 100);
     // b. local point cloud map:
     local_map_pub_ptr_ = std::make_shared<CloudPublisher>(nh, "/local_map", "/map", 100);
     // c. current scan:
     current_scan_pub_ptr_ = std::make_shared<CloudPublisher>(nh, "/current_scan", "/map", 100);
-    
+    current_points_pub_ptr_ = std::make_shared<CloudPublisher>(nh, "/current_scan", "/map", 100);
+
     // d. estimated lidar pose in map frame, lidar frontend:
     laser_odom_pub_ptr_ = std::make_shared<OdometryPublisher>(nh, "/laser_odometry", "/map", "/lidar", 100);
     // e. estimated lidar pose in map frame, map matching:
@@ -164,6 +166,7 @@ bool MatchingFlow::PublishData() {
     map_matching_odom_pub_ptr_->Publish(map_matching_odometry_, timestamp_synced);
 
     current_scan_pub_ptr_->Publish(matching_ptr_->GetCurrentScan());
+    current_points_pub_ptr_->Publish(current_cloud_data_.cloud_ptr, timestamp_synced);
 
     return true;
 }

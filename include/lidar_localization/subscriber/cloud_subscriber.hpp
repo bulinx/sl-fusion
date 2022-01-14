@@ -22,7 +22,9 @@
 namespace lidar_localization {
 class CloudSubscriber {
   public:
-    CloudSubscriber(ros::NodeHandle& nh, std::string topic_name, size_t buff_size);
+    CloudSubscriber(ros::NodeHandle& nh,
+                   std::string topic_name, 
+                   size_t buff_size);
     CloudSubscriber() = default;
     void ParseData(std::deque<CloudData>& deque_cloud_data);
 

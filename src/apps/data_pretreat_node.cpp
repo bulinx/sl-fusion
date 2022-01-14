@@ -21,6 +21,8 @@ int main(int argc, char *argv[]) {
 
     std::string cloud_topic;
     nh.param<std::string>("cloud_topic", cloud_topic, "/synced_cloud");
+    //nh.param<std::string>("cloud_topic", cloud_topic, "/current_scan");
+
 
     // subscribe to
     // a. raw Velodyne measurement

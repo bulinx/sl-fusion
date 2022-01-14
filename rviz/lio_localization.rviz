@@ -290,7 +290,8 @@ Visualization Manager:
           Max Intensity: 255
           Min Color: 0; 0; 0
           Min Intensity: 7
-          Name: CurrentScan
+          Name:  PointCloud2
+        #  Name: CurrentScan
           Position Transformer: XYZ
           Queue Size: 10
           Selectable: true
