@@ -90,6 +90,7 @@ class LidarMeasurementPublisher {
     LidarMeasurement lidar_measurement_;
     
     ros::Publisher publisher_;
+ 
 };
 
 } // namespace lidar_localization

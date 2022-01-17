@@ -22,6 +22,7 @@
 #include "lidar_localization/publisher/pos_vel_publisher.hpp"
 // d. synced reference trajectory:
 #include "lidar_localization/publisher/odometry_publisher.hpp"
+#include "lidar_localization/publisher/odom_publisher.hpp"
 
 // models
 #include "lidar_localization/models/scan_adjust/distortion_adjust.hpp"

@@ -16,14 +16,14 @@
 #include "lidar_localization/sensor_data/velocity_data.hpp"
 
 namespace lidar_localization {
-class OdometryPublisher {
+class OdomPublisher {
   public:
-    OdometryPublisher(ros::NodeHandle& nh, 
+    OdometryPublisherC(ros::NodeHandle& nh, 
                       std::string topic_name, 
                       std::string base_frame_id,
                       std::string child_frame_id,
                       int buff_size);
-    OdometryPublisher() = default;
+    OdomPublisher() = default;
 
     void Publish(const Eigen::Matrix4f& transform_matrix, double time);
     void Publish(const Eigen::Matrix4f& transform_matrix);
@@ -35,7 +35,7 @@ class OdometryPublisher {
     bool HasSubscribers();
 
   private:
-    void PublishData(
+    void PublishDataC(
       const Eigen::Matrix4f& transform_matrix, 
       const VelocityData &velocity_data, 
       ros::Time time
@@ -43,16 +43,16 @@ class OdometryPublisher {
 
   private:
     ros::NodeHandle nh_;
-    ros::Publisher publisher_;
-   // ros::Publisher laser_odom;
-    //ros::Publisher _pubC214_vicon_pose,_pubC214_visual_pose;
+    //ros::Publisher publisher_;
+    ros::Publisher laser_odom;
+    ros::Publisher _pubC214_vicon_pose,_pubC214_visual_pose;
 
 
     VelocityData velocity_data_;
-    nav_msgs::Odometry odometry_;
-   // nav_msgs::Odometry laser_odometry;
-   // geometry_msgs::TransformStamped C214_vicon_pose;
-   // nav_msgs::Odometry C214_visual_pose;
+    //nav_msgs::Odometry odometry_;
+    nav_msgs::Odometry laser_odometry;
+    geometry_msgs::TransformStamped C214_vicon_pose;
+    nav_msgs::Odometry C214_visual_pose;
 
 };
 }
