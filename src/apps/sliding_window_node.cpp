@@ -13,7 +13,7 @@
 
 using namespace lidar_localization;
 
-bool save_odometry = true;
+bool save_odometry = false;
 
 bool SaveOdometryCb(saveOdometry::Request &request, saveOdometry::Response &response) {
     save_odometry = true;
@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
         sliding_window_flow_ptr->Run();
 
         if (save_odometry) {
-            save_odometry = true;
+            save_odometry = false;
             sliding_window_flow_ptr->SaveOptimizedTrajectory();
         }
 

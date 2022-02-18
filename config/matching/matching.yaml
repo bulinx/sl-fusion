@@ -2,7 +2,7 @@
 # data storage:
 #
 # a. global map for relative pose estimation using lidar frontend:
-map_path: /home/ok/catkin_sl/src/lidar_localization/slam_data/map/filtered_map.pcd
+map_path: /home/ok/data/sl/map/06.pcd
 # b. scan context index for map matching:
 scan_context_path: /home/ok/catkin_sl/src/lidar_localization/slam_data/scan_context   
 

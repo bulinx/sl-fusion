@@ -1,5 +1,5 @@
 /*
- * @Description: velocity 数据
+ * @Description: velocity 数据  （速度）
  * @Author: Ren Qian
  * @Date: 2019-07-17 18:27:40
  */

@@ -40,19 +40,26 @@ class OdometryPublisher {
       const VelocityData &velocity_data, 
       ros::Time time
     );
+  private:
+    void PublishData2(
+      const Eigen::Matrix4f& laser_pose, 
+      const VelocityData &velocity_data, 
+      ros::Time time
+    );
+   
 
   private:
     ros::NodeHandle nh_;
     ros::Publisher publisher_;
-   // ros::Publisher laser_odom;
-    //ros::Publisher _pubC214_vicon_pose,_pubC214_visual_pose;
+    //ros::Publisher optimized_odom;
+    ros::Publisher _pubC214_vicon_pose,_pubC214_visual_pose;
 
 
     VelocityData velocity_data_;
     nav_msgs::Odometry odometry_;
-   // nav_msgs::Odometry laser_odometry;
-   // geometry_msgs::TransformStamped C214_vicon_pose;
-   // nav_msgs::Odometry C214_visual_pose;
+    //nav_msgs::Odometry optimized_odometry;
+    geometry_msgs::TransformStamped C214_vicon_pose;
+    nav_msgs::Odometry C214_visual_pose;
 
 };
 }

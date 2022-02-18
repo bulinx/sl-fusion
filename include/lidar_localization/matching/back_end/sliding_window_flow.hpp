@@ -17,7 +17,7 @@
 #include "lidar_localization/subscriber/imu_subscriber.hpp"
 
 #include "lidar_localization/publisher/odometry_publisher.hpp"
-#include "lidar_localization/publisher/odom_publisher.hpp"
+//#include "lidar_localization/publisher/odom_publisher.hpp"
 #include "lidar_localization/publisher/cloud_publisher.hpp"
 #include "lidar_localization/publisher/key_frame_publisher.hpp"
 #include "lidar_localization/publisher/key_frames_publisher.hpp"

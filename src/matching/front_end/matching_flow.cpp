@@ -32,11 +32,11 @@ MatchingFlow::MatchingFlow(ros::NodeHandle& nh) {
     current_scan_pub_ptr_ = std::make_shared<CloudPublisher>(nh, "/current_scan", "/map", 100);
 
     // d. estimated lidar pose in map frame, lidar frontend:
-    laser_odom_pub_ptr_ = std::make_shared<OdomPublisher>(nh, "/laser_odometry", "/map", "/lidar", 100);
+    laser_odom_pub_ptr_ = std::make_shared<OdometryPublisher>(nh, "/laser_odometry", "/map", "/lidar", 100);
     // e. estimated lidar pose in map frame, map matching: 估计雷达位姿在map坐标系下
     map_matching_odom_pub_ptr_ = std::make_shared<OdometryPublisher>(nh, "/map_matching_odometry", "/map", "/lidar", 100);
-   // C214_visual_pose_pub_ptr_ = std::make_shared<OdometryPublisher>(nh, "/C214_visual_pose", "/world", "/map", 100);
-   // C214_vicon_pose_pub_ptr_ = std::make_shared<OdometryPublisher>(nh, "/C214_vicon_pose", "/world", "/map", 100);
+  //  C214_visual_pose_pub_ptr_ = std::make_shared<OdomPublisher>(nh, "/C214_visual_pose", "/world", "/map", 100);
+   // C214_vicon_pose_pub_ptr_ = std::make_shared<OdomPublisher>(nh, "/C214_vicon_pose", "/world", "/map", 100);
 
 
     matching_ptr_ = std::make_shared<Matching>();

@@ -15,7 +15,8 @@
 // publisher
 #include "lidar_localization/publisher/cloud_publisher.hpp"
 #include "lidar_localization/publisher/odometry_publisher.hpp"
-#include "lidar_localization/publisher/odom_publisher.hpp"
+//#include "lidar_localization/publisher/odom_publisher.hpp"
+
 #include "lidar_localization/publisher/tf_broadcaster.hpp"
 
 // matching
@@ -52,10 +53,10 @@ class MatchingFlow {
     std::shared_ptr<CloudPublisher> current_points_pub_ptr_;
 
 
-    std::shared_ptr<OdomPublisher> laser_odom_pub_ptr_;
+    std::shared_ptr<OdometryPublisher> laser_odom_pub_ptr_;
     std::shared_ptr<OdometryPublisher> map_matching_odom_pub_ptr_;
-    //std::shared_ptr<OdometryPublisher> C214_visual_pose_pub_ptr_;
-    //std::shared_ptr<OdometryPublisher> C214_vicon_pose_pub_ptr_;
+    //std::shared_ptr<OdomPublisher> C214_visual_pose_pub_ptr_;
+    //std::shared_ptr<OdomPublisher> C214_vicon_pose_pub_ptr_;
 
 
     // matching
